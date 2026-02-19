@@ -3,91 +3,195 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Akshay Shivashankar Bharadwaj — Portfolio</title>
-  <meta name="description" content="Akshay Bharadwaj — Software Engineer. Cloud, Full-stack, Systems."/>
+  <title>Akshay Bharadwaj — Portfolio</title>
+
   <style>
-    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa7bf;--accent:#6ee7b7}
-    html,body{height:100%}
-    body{margin-top:30;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#071022 0%,#071726 100%);color:#e6eef6;display:flex;align-items:center;justify-content:center;padding:32px}
-    .container{max-width:980px;width:100%}
-    header{display:flex;gap:20px;align-items:center;margin-bottom:18px}
-    .avatar{width:96px;height:96px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#4fd1c5);display:flex;align-items:center;justify-content:center;font-weight:700;color:#042124;font-size:28px}
-    h1{margin:0;font-size:28px}
-    p.lead{margin:6px 0 0;color:var(--muted)}
-    .card{background:rgba(255,255,255,0.03);padding:20px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.6);margin-bottom:14px}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
-    .skills span{display:inline-block;background:#072135;color:var(--accent);padding:6px 10px;border-radius:999px;margin:6px 6px 0 0;font-size:13px}
-    .links a{color:var(--accent);text-decoration:none;margin-right:12px}
-    footer{color:var(--muted);font-size:13px;margin-top:10px}
-    @media(max-width:880px){.grid{grid-template-columns:1fr;}}
-    .section-title{color:var(--muted);font-size:13px;margin-bottom:8px}
-    ul{margin:8px 0 0 18px;padding:0;color:var(--muted)}
-    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:#042124;text-decoration:none;font-weight:600;margin-top:8px}
+    :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --accent:#2563eb;
+      --border:#e2e8f0;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      padding-top:80px;   /* ✅ Top margin added */
+      padding-bottom:60px;
+    }
+
+    .container{
+      max-width:1000px;
+      margin:0 auto;
+      padding:0 24px;
+    }
+
+    header{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    h1{
+      margin:0;
+      font-size:36px;
+      font-weight:700;
+    }
+
+    .subtitle{
+      color:var(--muted);
+      margin-top:10px;
+      font-size:18px;
+    }
+
+    .links a{
+      margin:0 12px;
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:500;
+    }
+
+    .section{
+      margin-bottom:40px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:24px;
+      margin-top:16px;
+    }
+
+    .section-title{
+      font-size:20px;
+      font-weight:600;
+      margin-bottom:10px;
+    }
+
+    ul{
+      margin:10px 0 0 20px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .skills span{
+      display:inline-block;
+      background:#eff6ff;
+      color:var(--accent);
+      padding:6px 12px;
+      border-radius:20px;
+      font-size:14px;
+      margin:6px 6px 0 0;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:12px;
+      padding:8px 14px;
+      background:var(--accent);
+      color:white;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:500;
+    }
+
+    footer{
+      text-align:center;
+      margin-top:60px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
   </style>
 </head>
+
 <body>
   <div class="container">
+
     <header>
-      <div class="avatar">AS</div>
-      <div>
-        <h1>Akshay Shivashankar Bharadwaj</h1>
-        <p class="lead">MS Computer Science (USC) • Cloud & Distributed Systems • Full-Stack & Kernel Programming</p>
-        <div class="links" style="margin-top:8px">
-          <a href="mailto:ab79035@usc.edu">ab79035@usc.edu</a>
-          <a href="https://github.com/akshaysb2k" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://linkedin.com/in/akshay-shivashankar-bharadwaj-8058991b3" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
+      <h1>Akshay Shivashankar Bharadwaj</h1>
+      <div class="subtitle">
+        MS Computer Science (USC) • Cloud & Distributed Systems • Full-Stack Engineer
+      </div>
+
+      <div class="links" style="margin-top:15px;">
+        <a href="mailto:ab79035@usc.edu">Email</a>
+        <a href="https://github.com/akshaysb2k" target="https://github.com/akshaysb2k">GitHub</a>
+        <a href="https://linkedin.com/in/akshay-shivashankar-bharadwaj-8058991b3" target="_blank">LinkedIn</a>
       </div>
     </header>
 
-    <div class="grid">
-      <main>
-        <section class="card">
-          <div class="section-title">About</div>
-          <p>I’m a Master’s student in Computer Science at USC with strong foundations in algorithms, operating systems, and scalable system design. I build cloud-native automation and reliable full-stack systems using AWS, Docker, Kubernetes, and REST APIs. I enjoy solving systems and distributed-systems problems and creating products that help people at scale.</p>
-        </section>
+    <section class="section">
+      <div class="section-title">About</div>
+      <div class="card">
+        I am a Master’s student in Computer Science at USC with strong foundations in
+        algorithms, operating systems, and scalable system design. I have experience
+        building cloud-native automation frameworks and deploying distributed systems
+        on AWS using Docker and Kubernetes.
+      </div>
+    </section>
 
-        <section class="card">
-          <div class="section-title">Experience</div>
-          <h3 style="margin:6px 0">IT Engineer — Qualcomm (June 2022 – Dec 2024)</h3>
-          <ul>
-            <li>Built an AngularJS + Flask app using ServiceNow APIs to automate RFC workflows — saved 100+ engineering hours/month.</li>
-            <li>Onboarded and deployed 70+ web apps on AWS EC2 using Lambda automation, MFA, and CloudWatch monitoring.</li>
-            <li>Automated CI/CD and infra with CloudFormation; containerized services using Docker & Kubernetes, reducing deployment time ~50%.</li>
-          </ul>
-        </section>
+    <section class="section">
+      <div class="section-title">Experience</div>
+      <div class="card">
+        <strong>IT Engineer — Qualcomm (2022–2024)</strong>
+        <ul>
+          <li>Built AngularJS + Flask automation app integrating ServiceNow APIs, saving 100+ engineering hours/month.</li>
+          <li>Deployed 70+ web applications on AWS EC2 with Lambda automation and monitoring.</li>
+          <li>Containerized microservices with Docker & Kubernetes, reducing deployment time by ~50%.</li>
+        </ul>
+      </div>
+    </section>
 
-        <section class="card">
-          <div class="section-title">Selected Projects</div>
-          <h4 style="margin:6px 0">Weenix — OS Kernel</h4>
-          <p style="margin:6px 0;color:var(--muted)">Implemented process/thread management, virtual memory, VFS and system calls in C for a Unix-like kernel.</p>
+    <section class="section">
+      <div class="section-title">Projects</div>
 
-          <h4 style="margin:6px 0">Triviophilia — Full-Stack Quiz Platform</h4>
-          <p style="margin:6px 0;color:var(--muted)">Led a team building a quiz platform with HTML/CSS/JS/PHP and MySQL for authentication and scoring.</p>
+      <div class="card">
+        <strong>Weenix OS Kernel</strong>
+        <ul>
+          <li>Implemented process scheduling, virtual memory, and VFS in a Unix-like OS kernel using C.</li>
+        </ul>
+      </div>
 
-          <h4 style="margin:6px 0">Moonquake Alert System (EPFL)</h4>
-          <p style="margin:6px 0;color:var(--muted)">Python-based seismic detection; containerized with Docker for simulations.</p>
-        </section>
+      <div class="card">
+        <strong>Triviophilia — Full-Stack Quiz Platform</strong>
+        <ul>
+          <li>Built full-stack academic quiz system using HTML, CSS, JavaScript, PHP, and MySQL.</li>
+        </ul>
+      </div>
 
-        <section class="card">
-          <div class="section-title">Education</div>
-          <p style="margin:6px 0"><strong>University of Southern California</strong> — MS Computer Science (Jan 2025 – Dec 2026) • GPA 3.8</p>
-          <p style="margin:6px 0"><strong>BMS College of Engineering</strong> — BE Computer Science (Aug 2018 – Jun 2022) • GPA 4.0</p>
-        </section>
-      </main>
+      <div class="card">
+        <strong>Moonquake Alert System (EPFL)</strong>
+        <ul>
+          <li>Developed Python-based seismic detection system, deployed via Docker containers.</li>
+        </ul>
+      </div>
+    </section>
 
-      <aside>
-        <div class="card">
-          <div class="section-title">Skills</div>
-          <div class="skills">
-            <span>Python</span><span>Java</span><span>C/C++</span><span>SQL</span><span>JavaScript</span><span>HTML/CSS</span>
-            <span>AWS</span><span>Docker</span><span>Kubernetes</span><span>Flask</span><span>AngularJS</span>
-          </div>
-        </div>
+    <section class="section">
+      <div class="section-title">Skills</div>
+      <div class="card skills">
+        <span>Python</span>
+        <span>Java</span>
+        <span>C/C++</span>
+        <span>JavaScript</span>
+        <span>SQL</span>
+        <span>AWS</span>
+        <span>Docker</span>
+        <span>Kubernetes</span>
+      </div>
+    </section>
 
-        <div class="card">
-          <div class="section-title">Quick Links</div>
-          <!-- Upload your resume PDF to the repo and name it Akshay_Resume.pdf -->
-          <a class="btn" href="Akshay_Resume.pdf" download>Download Resume</a>
-          <div style="margin-top:10px;color:var(--muted);font-size:13px">
-            Los
+    <footer>
+      © <script>document.write(new Date().getFullYear())</script> Akshay Bharadwaj
+    </footer>
+
+  </div>
+</body>
+</html>
