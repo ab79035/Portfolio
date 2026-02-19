@@ -22,7 +22,7 @@
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;
       background:var(--bg);
       color:var(--text);
-      padding-top:80px;   /* ✅ Top margin added */
+      padding-top:80px;
       padding-bottom:60px;
     }
 
@@ -90,17 +90,6 @@
       margin:6px 6px 0 0;
     }
 
-    .btn{
-      display:inline-block;
-      margin-top:12px;
-      padding:8px 14px;
-      background:var(--accent);
-      color:white;
-      border-radius:8px;
-      text-decoration:none;
-      font-weight:500;
-    }
-
     footer{
       text-align:center;
       margin-top:60px;
@@ -117,12 +106,12 @@
     <header>
       <h1>Akshay Shivashankar Bharadwaj</h1>
       <div class="subtitle">
-        MS Computer Science (USC) • Cloud & Distributed Systems • Full-Stack Engineer
+        MS Computer Science (USC) • Cloud & Distributed Systems • Systems & Backend Engineer
       </div>
 
       <div class="links" style="margin-top:15px;">
         <a href="mailto:ab79035@usc.edu">Email</a>
-        <a href="https://github.com/akshaysb2k" target="https://github.com/akshaysb2k">GitHub</a>
+        <a href="https://github.com/akshaysb2k" target="_blank">GitHub</a>
         <a href="https://linkedin.com/in/akshay-shivashankar-bharadwaj-8058991b3" target="_blank">LinkedIn</a>
       </div>
     </header>
@@ -131,9 +120,9 @@
       <div class="section-title">About</div>
       <div class="card">
         I am a Master’s student in Computer Science at USC with strong foundations in
-        algorithms, operating systems, and scalable system design. I have experience
-        building cloud-native automation frameworks and deploying distributed systems
-        on AWS using Docker and Kubernetes.
+        algorithms, operating systems, and distributed systems. I have industry experience
+        building scalable cloud-native infrastructure and full-stack systems, with a focus on
+        automation, reliability, and performance optimization.
       </div>
     </section>
 
@@ -142,9 +131,10 @@
       <div class="card">
         <strong>IT Engineer — Qualcomm (2022–2024)</strong>
         <ul>
-          <li>Built AngularJS + Flask automation app integrating ServiceNow APIs, saving 100+ engineering hours/month.</li>
-          <li>Deployed 70+ web applications on AWS EC2 with Lambda automation and monitoring.</li>
-          <li>Containerized microservices with Docker & Kubernetes, reducing deployment time by ~50%.</li>
+          <li>Developed AngularJS–Flask automation platform integrating ServiceNow APIs to automate RFC workflows, saving 100+ engineering hours per month.</li>
+          <li>Led onboarding and deployment of 70+ applications on Amazon Linux EC2 using AWS Lambda automation, MFA integration, and CloudWatch monitoring.</li>
+          <li>Automated scalable infrastructure using AWS CloudFormation and improved CI/CD reliability across cross-functional Dev, QA, and Infra teams.</li>
+          <li>Containerized microservices using Docker and Kubernetes (EKS), reducing deployment time by nearly 50%.</li>
         </ul>
       </div>
     </section>
@@ -153,25 +143,43 @@
       <div class="section-title">Projects</div>
 
       <div class="card">
-        <strong>Weenix OS Kernel</strong>
+        <strong>Weenix — Unix-Like Operating System Kernel (C)</strong>
         <ul>
-          <li>Implemented process scheduling, virtual memory, and VFS in a Unix-like OS kernel using C.</li>
+          <li>Designed and implemented core kernel subsystems including process scheduling, thread synchronization, and context switching.</li>
+          <li>Built virtual file system (VFS) and system call interfaces to enable user-space process interactions.</li>
+          <li>Implemented virtual memory mapping, page fault handling, and fork()-based process creation for memory isolation.</li>
+          <li>Applied concepts from Linux kernel design including synchronization primitives and low-level memory management.</li>
         </ul>
       </div>
 
       <div class="card">
-        <strong>Triviophilia — Full-Stack Quiz Platform</strong>
+        <strong>Triviophilia — Full-Stack Academic Quiz Platform</strong>
         <ul>
-          <li>Built full-stack academic quiz system using HTML, CSS, JavaScript, PHP, and MySQL.</li>
+          <li>Led development of centralized quiz management platform for administrators and students.</li>
+          <li>Designed relational MySQL schema for authentication, quiz storage, and scoring logic.</li>
+          <li>Built frontend using HTML, CSS, JavaScript and backend using PHP with server-side validation.</li>
+          <li>Implemented session management and secure login mechanisms.</li>
         </ul>
       </div>
 
       <div class="card">
-        <strong>Moonquake Alert System (EPFL)</strong>
+        <strong>Moonquake Alert System (EPFL Collaboration)</strong>
         <ul>
-          <li>Developed Python-based seismic detection system, deployed via Docker containers.</li>
+          <li>Developed Python-based seismic data analysis system for detecting lunar surface tremors.</li>
+          <li>Leveraged scientific computing and signal processing techniques for anomaly detection.</li>
+          <li>Containerized application using Docker for deployment during lunar base simulation experiments.</li>
         </ul>
       </div>
+
+      <div class="card">
+        <strong>Artsy — Web & Mobile Application</strong>
+        <ul>
+          <li>Built AngularJS web frontend and Android mobile application mirroring Artsy platform features.</li>
+          <li>Integrated REST APIs with Node.js (Express) backend and MongoDB database.</li>
+          <li>Deployed application on Google Cloud Platform.</li>
+        </ul>
+      </div>
+
     </section>
 
     <section class="section">
@@ -179,12 +187,16 @@
       <div class="card skills">
         <span>Python</span>
         <span>Java</span>
-        <span>C/C++</span>
+        <span>C</span>
+        <span>C++</span>
         <span>JavaScript</span>
         <span>SQL</span>
         <span>AWS</span>
         <span>Docker</span>
         <span>Kubernetes</span>
+        <span>Jenkins</span>
+        <span>Linux</span>
+        <span>Raft</span>
       </div>
     </section>
 
