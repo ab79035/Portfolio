@@ -154,7 +154,7 @@ footer{
     <header>
       <h1>Akshay Shivashankar Bharadwaj</h1>
       <div class="subtitle">
-        MS Computer Science @ University of Southern California (USC) • Cloud & Distributed Systems • Systems & Backend Engineer
+        MS Computer Science @ University of Southern California (USC) • Cloud & Distributed Systems • DevSecOps & Backend Engineer
       </div>
 
       <div class="links" style="margin-top:15px;">
@@ -174,10 +174,9 @@ footer{
     <section class="section">
       <div class="section-title">About</div>
       <div class="card">
-        I am a Master’s student in Computer Science at USC with strong foundations in
-        algorithms, operating systems, and distributed systems. I have industry experience
-        building scalable cloud-native infrastructure and full-stack systems, with a focus on
-        automation, reliability, and performance optimization.
+       I am a Master’s student in Computer Science at USC with a strong foundation in algorithms, operating systems, cloud computing, and distributed systems. I previously worked as an IT Engineer at Qualcomm, where I built scalable cloud-native automation frameworks and deployed 70+ applications on AWS using Lambda, CloudFormation, Docker, and Kubernetes. My experience spans backend development, infrastructure automation, and systems programming, including Linux kernel-level work and distributed consensus implementation. 
+
+    I am particularly interested in building reliable, fault-tolerant systems that operate at scale, with a focus on performance, correctness, and clean architecture. Through projects ranging from OS kernel development to implementing the Raft consensus protocol, I have developed a strong understanding of concurrency, state management, and distributed coordination. I am passionate about engineering systems that are both technically robust and impactful in real-world environments.
       </div>
     </section>
 
@@ -187,9 +186,9 @@ footer{
         <strong>IT Engineer — Qualcomm (2022–2024)</strong>
         <ul>
           <li>Developed AngularJS–Flask automation platform integrating ServiceNow APIs to automate RFC workflows, saving 100+ engineering hours per month.</li>
-          <li>Led onboarding and deployment of 70+ applications on Amazon Linux EC2 using AWS Lambda automation, MFA integration, and CloudWatch monitoring.</li>
-          <li>Automated scalable infrastructure using AWS CloudFormation and improved CI/CD reliability across cross-functional Dev, QA, and Infra teams.</li>
-          <li>Containerized microservices using Docker and Kubernetes (EKS), reducing deployment time by nearly 50%.</li>
+          <li>Led onboarding and deployment of 70+ applications on Amazon Linux EC2 using AWS Lambda automation, MFA integration, CloudWatch monitoring and integration of observability platforms like Datadog.</li>
+          <li>Automated scalable infrastructure using IaC tools such as AWS CloudFormation, Terraform etc. and improved CI/CD reliability across cross-functional Dev, QA, and Infra teams.</li>
+          <li>Containerized microservices using Docker and Kubernetes (EKS) and automated deplyment workflows, reducing deployment time by nearly 50%.</li>
         </ul>
       </div>
     </section>
@@ -204,6 +203,26 @@ footer{
           <li>Built virtual file system (VFS) and system call interfaces to enable user-space process interactions.</li>
           <li>Implemented virtual memory mapping, page fault handling, and fork()-based process creation for memory isolation.</li>
           <li>Applied concepts from Linux kernel design including synchronization primitives and low-level memory management.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <strong>Raft Consensus Protocol — Distributed Systems (C++20, gRPC)</strong>
+        <ul>
+          <li>Implemented the leader election component of the Raft replicated state machine protocol in C++20 using gRPC-based inter-node communication.</li>
+          <li>Designed fault-tolerant election logic with randomized timeouts, term management, and majority-based voting to handle crashes, partitions, and network delays.</li>
+          <li>Built RPC handlers for <em>RequestVote</em> and <em>AppendEntries</em> following the Raft extended paper specification (Figure 2), ensuring protocol correctness.</li>
+          <li>Engineered concurrent state transitions with mutex-protected shared state to prevent race conditions under simulated network failures.</li>
+          <li>Validated correctness using automated integration tests under network disconnection and partition scenarios.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <strong>Artsy — Web & Mobile Application</strong>
+        <ul>
+          <li>Built AngularJS web frontend and Android mobile application mirroring Artsy platform features.</li>
+          <li>Integrated REST APIs with Node.js (Express) backend and MongoDB database.</li>
+          <li>Deployed application on Google Cloud Platform.</li>
         </ul>
       </div>
 
@@ -223,15 +242,6 @@ footer{
           <li>Developed Python-based seismic data analysis system for detecting lunar surface tremors.</li>
           <li>Leveraged scientific computing and signal processing techniques for anomaly detection.</li>
           <li>Containerized application using Docker for deployment during lunar base simulation experiments.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <strong>Artsy — Web & Mobile Application</strong>
-        <ul>
-          <li>Built AngularJS web frontend and Android mobile application mirroring Artsy platform features.</li>
-          <li>Integrated REST APIs with Node.js (Express) backend and MongoDB database.</li>
-          <li>Deployed application on Google Cloud Platform.</li>
         </ul>
       </div>
 
