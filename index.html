@@ -190,7 +190,110 @@
       </div>
     </section>
 
-    <!-- Remaining sections unchanged (Projects, Publication, Certification, Skills, Footer) -->
+    <section class="section">
+      <div class="section-title">Projects</div>
+
+      <div class="card">
+        <strong>Weenix — Unix-Like Operating System Kernel (C)</strong>
+        <ul>
+          <li>Designed and implemented core kernel subsystems including process scheduling, thread synchronization, and context switching.</li>
+          <li>Built virtual file system (VFS) and system call interfaces to enable user-space process interactions.</li>
+          <li>Implemented virtual memory mapping, page fault handling, and fork()-based process creation for memory isolation.</li>
+          <li>Applied concepts from Linux kernel design including synchronization primitives and low-level memory management.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <strong>Raft Consensus Protocol — Distributed Systems (C++20, gRPC)</strong>
+        <ul>
+          <li>Implemented the leader election component of the Raft replicated state machine protocol in C++20 using gRPC-based inter-node communication.</li>
+          <li>Designed fault-tolerant election logic with randomized timeouts, term management, and majority-based voting to handle crashes, partitions, and network delays.</li>
+          <li>Built RPC handlers for <em>RequestVote</em> and <em>AppendEntries</em> following the Raft extended paper specification, ensuring protocol correctness.</li>
+          <li>Engineered concurrent state transitions with mutex-protected shared state to prevent race conditions under simulated network failures.</li>
+          <li>Validated correctness using automated integration tests under network disconnection and partition scenarios.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <strong>Artsy — Web & Mobile Application</strong>
+        <ul>
+          <li>Built AngularJS web frontend and Android mobile application mirroring Artsy platform features.</li>
+          <li>Integrated REST APIs with Node.js (Express) backend and MongoDB database.</li>
+          <li>Deployed application on Google Cloud Platform.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <strong>Triviophilia — Full-Stack Academic Quiz Platform</strong>
+        <ul>
+          <li>Led development of centralized quiz management platform for administrators and students.</li>
+          <li>Designed relational MySQL schema for authentication, quiz storage, and scoring logic.</li>
+          <li>Built frontend using HTML, CSS, JavaScript and backend using PHP with server-side validation.</li>
+          <li>Implemented session management and secure login mechanisms.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <strong>Moonquake Alert System (EPFL Collaboration)</strong>
+        <ul>
+          <li>Developed Python-based seismic data analysis system for detecting lunar surface tremors.</li>
+          <li>Leveraged scientific computing and signal processing techniques for anomaly detection.</li>
+          <li>Containerized application using Docker for deployment during lunar base simulation experiments.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <section class="section">
+      <div class="section-title">Publication</div>
+      <div class="card">
+        <strong><a href="https://ieeexplore.ieee.org/document/10029276">Eye-Move: An Eye Gaze Typing Application with OpenCV and Dlib Library</a></strong>
+        <div class="pub-type">IEEE Conference Publication</div>
+        <ul>
+          <li>Developed a computer vision-based eye-gaze typing application that enables text input using eye movement detection and virtual keyboard interaction.</li>
+          <li>Utilizes **OpenCV** and **Dlib** libraries for real-time face and eye detection, gaze direction estimation, and typing control, advancing accessibility for users with limited motor function.</li>
+          <li>Incorporates a user-friendly interface that maps estimated eye gaze coordinates to keyboard input, allowing hands-free text entry and improved communication for people with physical disabilities.</li>
+        </ul>
+      </div>
+  </section>
+
+    <section class="section">
+    <div class="section-title">Certification</div>
+    <div class="card">
+      <strong>AWS Certified Solutions Architect – Associate</strong>
+      <div class="cert-badge">AWS Certified</div>
+      <ul>
+        <li>Validated expertise in designing scalable, secure, and highly available systems on AWS.</li>
+        <li>Experienced with EC2, S3, VPC, RDS, Lambda, IAM, CloudFormation, and distributed architecture best practices.</li>
+      </ul>
+    </div>
+  </section>
+
+
+    <section class="section">
+      <div class="section-title">Skills</div>
+      <div class="card skills">
+        <span>Python</span>
+        <span>Java</span>
+        <span>C</span>
+        <span>C++</span>
+        <span>JavaScript</span>
+        <span>AngularJS</span>
+        <span>ReactJS</span>
+        <span>SQL</span>
+        <span>AWS</span>
+        <span>Docker</span>
+        <span>Kubernetes</span>
+        <span>Jenkins CI/CD</span>
+        <span>Linux/Unix</span>
+        <span>Raft</span>
+        <span>Terraform IaC</span>
+        <SPAN>Git/GitHub</SPAN>
+        <span>Datadog</span>
+        <span>PowerBI</span>
+        <span>PagerDuty</span>
+      </div>
+    </section>
 
     <footer>
       © <script>document.write(new Date().getFullYear())</script> Akshay Bharadwaj
