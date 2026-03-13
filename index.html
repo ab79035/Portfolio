@@ -206,11 +206,10 @@
       <div class="card">
         <strong>Raft Consensus Protocol — Distributed Systems (C++20, gRPC)</strong>
         <ul>
-          <li>Implemented the leader election component of the Raft replicated state machine protocol in C++20 using gRPC-based inter-node communication.</li>
-          <li>Designed fault-tolerant election logic with randomized timeouts, term management, and majority-based voting to handle crashes, partitions, and network delays.</li>
-          <li>Built RPC handlers for <em>RequestVote</em> and <em>AppendEntries</em> following the Raft extended paper specification, ensuring protocol correctness.</li>
-          <li>Engineered concurrent state transitions with mutex-protected shared state to prevent race conditions under simulated network failures.</li>
-          <li>Validated correctness using automated integration tests under network disconnection and partition scenarios.</li>
+          <li>Built a production-style implementation of the Raft consensus leader election and log replication protocols using
+gRPC, ensuring safety and liveness under node crashes, network partitions, and delayed RPC delivery.</li>
+          <li>Designed concurrent, thread-safe state management for distributed RPC handlers with term quorum-based voting and
+replicated log consistency, validated through automated fault-injection tests simulating real-world failure scenarios.</li>
         </ul>
       </div>
 
