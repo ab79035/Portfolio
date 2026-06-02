@@ -210,6 +210,8 @@
 gRPC, ensuring safety and liveness under node crashes, network partitions, and delayed RPC delivery.</li>
           <li>Designed concurrent, thread-safe state management for distributed RPC handlers with term quorum-based voting and
 replicated log consistency, validated through automated fault-injection tests simulating real-world failure scenarios.</li>
+          <li>Designed a replicated key-value store on top of this Raft implementation, applying committed log entries to a 
+            consistent state machine to guarantee linearizable reads and writes across nodes.</li>
         </ul>
       </div>
 
@@ -238,6 +240,17 @@ replicated log consistency, validated through automated fault-injection tests si
           <li>Developed Python-based seismic data analysis system for detecting lunar surface tremors.</li>
           <li>Leveraged scientific computing and signal processing techniques for anomaly detection.</li>
           <li>Containerized application using Docker for deployment during lunar base simulation experiments.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <strong>2D Platformer Game - WaterBoy is FireGirl (Unity, C#, Firebase)</strong>
+        <ul>
+          <li>Built a 2D platformer in Unity (C#) with modular systems for movement, collision detection, and real-time gameplay.</li>
+          <li>Designed a state machine (Normal, Fire, Liquid) to manage dynamic player behaviors and environment interactions.</li>
+          <li>Developed event-driven hazard systems (projectiles, enemies, spikes) with optimized collision logic for smooth performance.</li>
+          <li>Built a Python telemetry pipeline to store session data in Firebase and plot observed gameplay metrics including state usage, death heatmaps, damage distribution, to inform design.</li>
+          <strong><a href="https://chiragsrinivas72.github.io/waterboy_is_firegirl/">Game Link: WaterBoy is FireGirl</a></strong>
         </ul>
       </div>
 
