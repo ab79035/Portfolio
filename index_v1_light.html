@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Akshay Shivashankar Bharadwaj — Cloud & Distributed Systems</title>
+<meta name="description" content="MS Computer Science at USC. Distributed systems, cloud infrastructure, and systems programming." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ─── tokens ─────────────────────────────────────────────────────── */
+:root{
+  --console:#0E1519;      /* hero band */
+  --console-2:#16212A;
+  --paper:#ECEFEE;        /* page body */
+  --surface:#FFFFFF;
+  --ink:#16202A;
+  --muted:#5C6B76;
+  --rule:#CDD5D6;
+  --signal:#3B6EF5;       /* links, structure */
+  --amber:#E8A33B;        /* leader / highlight state */
+
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans Condensed","Helvetica Neue",Arial,sans-serif;
+  --serif:"IBM Plex Serif",Georgia,serif;
+
+  --wrap:1080px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--signal);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+
+/* small uppercase mono label used everywhere as the structural device */
+.tag{
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ─── hero / console band ────────────────────────────────────────── */
+.console{
+  background:var(--console);
+  background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:22px 22px;
+  color:#E6ECEE;
+  padding:76px 0 68px;
+  border-bottom:1px solid #000;
+}
+.console-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:56px;
+  align-items:center;
+}
+.eyebrow{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:#8FA3AD;
+  display:flex;align-items:center;gap:9px;margin-bottom:22px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--amber);flex:none}
+h1{
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:clamp(38px,5.6vw,62px);
+  line-height:1.02;
+  letter-spacing:-.015em;
+  margin:0 0 20px;
+  color:#fff;
+}
+h1 em{font-style:normal;color:var(--amber)}
+.lede{
+  font-size:17.5px;color:#B9C6CC;max-width:46ch;margin:0 0 30px;
+}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.btn{
+  font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.04em;
+  padding:11px 20px;border-radius:4px;
+  background:var(--amber);color:#161009;
+  border:1px solid var(--amber);
+  transition:transform .15s ease,background .15s ease;
+}
+.btn:hover{background:#F2B457;text-decoration:none;transform:translateY(-1px)}
+.btn-ghost{
+  background:transparent;color:#CBD7DC;border:1px solid #33434D;
+}
+.btn-ghost:hover{background:#1B2831;color:#fff;border-color:#4A5C67}
+
+/* ─── signature: raft cluster ────────────────────────────────────── */
+.cluster{display:flex;flex-direction:column;align-items:center;gap:14px}
+.cluster svg{width:100%;max-width:280px;height:auto;overflow:visible}
+.edge{stroke:#2A3A45;stroke-width:1}
+.edge.hot{stroke:var(--amber);stroke-width:1.4;opacity:.55}
+.node{fill:#16212A;stroke:#3E515D;stroke-width:1.5;transition:fill .3s,stroke .3s}
+.node.leader{fill:var(--amber);stroke:var(--amber)}
+.halo{fill:none;stroke:var(--amber);stroke-width:1;opacity:0}
+.halo.on{opacity:.45}
+.pulse{fill:var(--amber)}
+.svg-electing .edge.hot{stroke-dasharray:3 4;opacity:.35}
+.svg-electing .node{stroke:#6B7B86}
+.readout{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:#8FA3AD;text-align:center;
+}
+.readout b{color:var(--amber);font-weight:500}
+.caption{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  color:#63757F;text-align:center;max-width:30ch;text-transform:none;
+}
+
+/* ─── body sections ──────────────────────────────────────────────── */
+.band{padding:64px 0 8px}
+.band-head{
+  display:flex;align-items:baseline;gap:16px;margin-bottom:8px;
+}
+.band-head h2{
+  font-family:var(--sans);font-weight:600;font-size:15px;
+  letter-spacing:.14em;text-transform:uppercase;margin:0;
+}
+.band-head .line{flex:1;height:1px;background:var(--rule)}
+.band-head .count{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+.about{font-size:18px;max-width:68ch;margin:22px 0 0}
+.about p{margin:0 0 16px}
+
+/* datasheet entry: metadata rail + content */
+.entry{
+  display:grid;grid-template-columns:210px minmax(0,1fr);gap:34px;
+  padding:26px 0;border-top:1px solid var(--rule);
+  transition:border-color .2s ease;
+}
+.entry:hover{border-top-color:var(--ink)}
+.rail{display:flex;flex-direction:column;gap:8px;padding-top:3px}
+.rail .stack{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7}
+.entry h3{
+  font-family:var(--sans);font-weight:600;font-size:22px;letter-spacing:-.01em;
+  margin:0 0 4px;line-height:1.25;
+}
+.entry h3 a{color:inherit;text-decoration:none;border-bottom:1px solid var(--signal)}
+.entry h3 a:hover{color:var(--signal);text-decoration:none}
+.entry ul{margin:10px 0 0;padding-left:18px;color:#33424D}
+.entry li{margin-bottom:7px}
+.entry li::marker{color:var(--rule)}
+
+/* skills: grouped, not a pill soup */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0;border-top:1px solid var(--rule)}
+.skill-group{padding:22px 24px 22px 0;border-right:1px solid var(--rule)}
+.skill-group:last-child{border-right:none}
+.skill-group ul{list-style:none;margin:10px 0 0;padding:0;font-family:var(--mono);font-size:13px;color:#33424D}
+.skill-group li{padding:3px 0}
+
+.badge{
+  display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 9px;border:1px solid var(--rule);border-radius:3px;color:var(--muted);
+  align-self:flex-start;
+}
+.badge.verified{border-color:var(--amber);color:#9A6A15;background:#FBF2E1}
+
+footer{
+  margin-top:70px;padding:26px 0 40px;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+
+/* ─── responsive ─────────────────────────────────────────────────── */
+@media (max-width:900px){
+  .console-grid{grid-template-columns:1fr;gap:44px}
+  .cluster{order:2}
+  .entry{grid-template-columns:1fr;gap:12px}
+  .rail{flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px}
+  .skill-group{border-right:none;border-bottom:1px solid var(--rule);padding-right:0}
+  .skill-group:last-child{border-bottom:none}
+}
+@media (max-width:560px){
+  .console{padding:52px 0 48px}
+  .band{padding:48px 0 4px}
+  .about{font-size:16.5px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+  .pulse{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ hero ═══ -->
+<header class="console">
+  <div class="wrap console-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>MS Computer Science · USC · Los Angeles</div>
+      <h1>Systems that stay up<br>when things <em>go wrong</em>.</h1>
+      <p class="lede">
+        I work on distributed systems and cloud infrastructure — Raft consensus in C++20,
+        a Unix-like kernel in C, and 70+ production applications deployed on AWS at Qualcomm.
+      </p>
+      <div class="actions">
+        <a class="btn" href="Akshay_Shivashankar_Bharadwaj_Resume.pdf" download>Download resume</a>
+        <a class="btn btn-ghost" href="mailto:ab79035@usc.edu">Email</a>
+        <a class="btn btn-ghost" href="https://github.com/akshaysb2k" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/akshay-s-bharadwaj2k/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="cluster">
+      <svg id="raft" viewBox="0 0 260 260" role="img" aria-label="Diagram of a five-node Raft cluster electing a leader and replicating heartbeats.">
+        <g class="edges">
+          <line class="edge" x1="130" y1="42"    x2="213.7" y2="102.8"/>
+          <line class="edge" x1="130" y1="42"    x2="181.7" y2="201.2"/>
+          <line class="edge" x1="130" y1="42"    x2="78.3"  y2="201.2"/>
+          <line class="edge" x1="130" y1="42"    x2="46.3"  y2="102.8"/>
+          <line class="edge" x1="213.7" y1="102.8" x2="181.7" y2="201.2"/>
+          <line class="edge" x1="213.7" y1="102.8" x2="78.3"  y2="201.2"/>
+          <line class="edge" x1="213.7" y1="102.8" x2="46.3"  y2="102.8"/>
+          <line class="edge" x1="181.7" y1="201.2" x2="78.3"  y2="201.2"/>
+          <line class="edge" x1="181.7" y1="201.2" x2="46.3"  y2="102.8"/>
+          <line class="edge" x1="78.3"  y1="201.2" x2="46.3"  y2="102.8"/>
+        </g>
+        <g class="halos">
+          <circle class="halo" cx="130"   cy="42"    r="17"/>
+          <circle class="halo" cx="213.7" cy="102.8" r="17"/>
+          <circle class="halo" cx="181.7" cy="201.2" r="17"/>
+          <circle class="halo" cx="78.3"  cy="201.2" r="17"/>
+          <circle class="halo" cx="46.3"  cy="102.8" r="17"/>
+        </g>
+        <g class="nodes">
+          <circle class="node" cx="130"   cy="42"    r="11"/>
+          <circle class="node" cx="213.7" cy="102.8" r="11"/>
+          <circle class="node" cx="181.7" cy="201.2" r="11"/>
+          <circle class="node" cx="78.3"  cy="201.2" r="11"/>
+          <circle class="node" cx="46.3"  cy="102.8" r="11"/>
+        </g>
+        <g class="pulses">
+          <circle class="pulse" r="3" cx="130" cy="42"/>
+          <circle class="pulse" r="3" cx="130" cy="42"/>
+          <circle class="pulse" r="3" cx="130" cy="42"/>
+          <circle class="pulse" r="3" cx="130" cy="42"/>
+        </g>
+      </svg>
+      <div class="readout">
+        Term <b id="term">07</b> · Leader <b id="leaderLabel">n1</b> · Commit <b id="commit">1284</b>
+      </div>
+      <div class="caption">Raft leader election and log replication — implemented in C++20 with gRPC.</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ═══ about ═══ -->
+  <section class="band" id="about">
+    <div class="band-head"><h2>About</h2><span class="line"></span></div>
+    <div class="about">
+      <p>I am a Master's student in Computer Science at USC with a foundation in algorithms, operating systems, cloud computing, and distributed systems. I previously worked as an IT Engineer at Qualcomm, where I built cloud-native automation frameworks and deployed 70+ applications on AWS using Lambda, CloudFormation, Docker, and Kubernetes.</p>
+      <p>My interest is in reliable, fault-tolerant systems that operate at scale — performance, correctness, and clean architecture. Work ranging from OS kernel development to implementing the Raft consensus protocol has shaped how I think about concurrency, state management, and distributed coordination.</p>
+    </div>
+  </section>
+
+  <!-- ═══ experience ═══ -->
+  <section class="band" id="experience">
+    <div class="band-head"><h2>Experience</h2><span class="line"></span></div>
+
+    <article class="entry">
+      <div class="rail">
+        <span class="tag">2022 — 2024</span>
+        <span class="badge">Full-time</span>
+        <span class="stack">AWS · Kubernetes · Terraform<br>CloudFormation · Datadog · Flask</span>
+      </div>
+      <div>
+        <h3>IT Engineer — Qualcomm</h3>
+        <ul>
+          <li>Built an AngularJS–Flask automation platform integrating ServiceNow APIs to automate RFC workflows, saving 100+ engineering hours per month.</li>
+          <li>Led onboarding and deployment of 70+ applications on Amazon Linux EC2 with AWS Lambda automation, MFA integration, CloudWatch monitoring, and Datadog observability.</li>
+          <li>Automated infrastructure with CloudFormation and Terraform, improving CI/CD reliability across Dev, QA, and Infra teams.</li>
+          <li>Containerized microservices on Docker and Kubernetes (EKS), cutting deployment time by nearly 50%.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <!-- ═══ projects ═══ -->
+  <section class="band" id="work">
+    <div class="band-head"><h2>Selected work</h2><span class="line"></span><span class="count">06</span></div>
+
+    <article class="entry">
+      <div class="rail">
+        <span class="tag">Distributed systems</span>
+        <span class="stack">C++20 · gRPC · concurrency</span>
+      </div>
+      <div>
+        <h3>Raft Consensus Protocol</h3>
+        <ul>
+          <li>Production-style implementation of Raft leader election and log replication over gRPC, holding safety and liveness under node crashes, network partitions, and delayed RPC delivery.</li>
+          <li>Designed thread-safe state management for distributed RPC handlers with term-based quorum voting and replicated log consistency, validated by automated fault-injection tests.</li>
+          <li>Layered a replicated key-value store on top, applying committed entries to a state machine for linearizable reads and writes across nodes.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="rail">
+        <span class="tag">Operating systems</span>
+        <span class="stack">C · kernel · virtual memory</span>
+      </div>
+      <div>
+        <h3>Weenix — Unix-like OS Kernel</h3>
+        <ul>
+          <li>Implemented core kernel subsystems: process scheduling, thread synchronization, and context switching.</li>
+          <li>Built the virtual file system and system call interface enabling user-space process interaction.</li>
+          <li>Implemented virtual memory mapping, page fault handling, and fork()-based process creation for memory isolation.</li>
+          <li>Applied Linux kernel design concepts including synchronization primitives and low-level memory management.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="rail">
+        <span class="tag">Machine learning</span>
+        <span class="stack">PyTorch · Python · GCP</span>
+      </div>
+      <div>
+        <h3>Artsy — Web &amp; Mobile Application</h3>
+        <ul>
+          <li>Built a PyTorch image classification pipeline categorizing artwork by style and medium.</li>
+          <li>Collected and processed images and metadata with BeautifulSoup and Requests to assemble a structured training dataset.</li>
+          <li>Integrated the model into a full-stack pipeline and deployed on Google Cloud Platform.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="rail">
+        <span class="tag">Gameplay &amp; telemetry</span>
+        <span class="stack">Unity · C# · Firebase · Python</span>
+      </div>
+      <div>
+        <h3><a href="https://chiragsrinivas72.github.io/waterboy_is_firegirl/" target="_blank" rel="noopener">WaterBoy is FireGirl — 2D Platformer ↗</a></h3>
+        <ul>
+          <li>Built a 2D platformer in Unity with modular systems for movement, collision detection, and real-time gameplay.</li>
+          <li>Designed a state machine (Normal, Fire, Liquid) driving player behavior and environment interaction.</li>
+          <li>Developed event-driven hazard systems — projectiles, enemies, spikes — with optimized collision logic.</li>
+          <li>Built a Python telemetry pipeline storing session data in Firebase, plotting state usage, death heatmaps, and damage distribution to inform design.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="rail">
+        <span class="tag">Full-stack</span>
+        <span class="stack">PHP · MySQL · JavaScript</span>
+      </div>
+      <div>
+        <h3>Triviophilia — Academic Quiz Platform</h3>
+        <ul>
+          <li>Led development of a centralized quiz management platform for administrators and students.</li>
+          <li>Designed the relational MySQL schema covering authentication, quiz storage, and scoring logic.</li>
+          <li>Built the frontend in HTML, CSS, and JavaScript with a PHP backend and server-side validation.</li>
+          <li>Implemented session management and secure login.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="rail">
+        <span class="tag">Scientific computing</span>
+        <span class="stack">Python · Docker · EPFL</span>
+      </div>
+      <div>
+        <h3>Moonquake Alert System</h3>
+        <ul>
+          <li>Developed a Python seismic data analysis system detecting lunar surface tremors.</li>
+          <li>Applied signal processing techniques for anomaly detection.</li>
+          <li>Containerized the application with Docker for deployment during lunar base simulation experiments.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <!-- ═══ publication + certification ═══ -->
+  <section class="band" id="credentials">
+    <div class="band-head"><h2>Publication &amp; certification</h2><span class="line"></span></div>
+
+    <article class="entry">
+      <div class="rail">
+        <span class="tag">IEEE Conference</span>
+        <span class="stack">OpenCV · Dlib · accessibility</span>
+      </div>
+      <div>
+        <h3><a href="https://ieeexplore.ieee.org/document/10029276" target="_blank" rel="noopener">Eye-Move: An Eye Gaze Typing Application with OpenCV and Dlib ↗</a></h3>
+        <ul>
+          <li>A computer-vision eye-gaze typing application enabling text input through eye movement and a virtual keyboard.</li>
+          <li>Uses OpenCV and Dlib for real-time face and eye detection, gaze direction estimation, and typing control.</li>
+          <li>Maps estimated gaze coordinates to keyboard input for hands-free text entry by users with limited motor function.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="rail">
+        <span class="tag">Certification</span>
+        <span class="badge verified">AWS Certified</span>
+      </div>
+      <div>
+        <h3>AWS Certified Solutions Architect — Associate</h3>
+        <ul>
+          <li>Validated expertise in designing scalable, secure, highly available systems on AWS.</li>
+          <li>EC2, S3, VPC, RDS, Lambda, IAM, CloudFormation, and distributed architecture best practices.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <!-- ═══ skills ═══ -->
+  <section class="band" id="skills">
+    <div class="band-head"><h2>Toolkit</h2><span class="line"></span></div>
+    <div class="skills">
+      <div class="skill-group">
+        <span class="tag">Languages</span>
+        <ul><li>Python</li><li>C / C++</li><li>Java</li><li>JavaScript</li><li>SQL</li></ul>
+      </div>
+      <div class="skill-group">
+        <span class="tag">Cloud &amp; infra</span>
+        <ul><li>AWS</li><li>Docker</li><li>Kubernetes (EKS)</li><li>Terraform</li><li>Jenkins CI/CD</li></ul>
+      </div>
+      <div class="skill-group">
+        <span class="tag">Systems</span>
+        <ul><li>Linux / Unix</li><li>Raft consensus</li><li>gRPC</li><li>Kernel internals</li></ul>
+      </div>
+      <div class="skill-group">
+        <span class="tag">Web &amp; ops</span>
+        <ul><li>ReactJS</li><li>AngularJS</li><li>Datadog</li><li>PagerDuty</li><li>PowerBI</li><li>Git / GitHub</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© <span id="year">2026</span> Akshay Shivashankar Bharadwaj</span>
+    <span><a href="mailto:ab79035@usc.edu">ab79035@usc.edu</a></span>
+  </footer>
+</main>
+
+<script>
+/* Raft cluster: 5 nodes, one leader sending heartbeats, periodic re-election. */
+(function () {
+  var svg = document.getElementById('raft');
+  if (!svg) return;
+
+  var PTS = [[130,42],[213.7,102.8],[181.7,201.2],[78.3,201.2],[46.3,102.8]];
+  var nodes  = svg.querySelectorAll('.node');
+  var halos  = svg.querySelectorAll('.halo');
+  var edges  = svg.querySelectorAll('.edge');
+  var pulses = svg.querySelectorAll('.pulse');
+  var elTerm = document.getElementById('term');
+  var elLead = document.getElementById('leaderLabel');
+  var elCommit = document.getElementById('commit');
+
+  var leader = 0, term = 7, commit = 1284;
+  var BEAT = 1400, CYCLE = 9800, ELECTION = 1100;
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function paint() {
+    var followers = [];
+    for (var i = 0; i < 5; i++) {
+      nodes[i].classList.toggle('leader', i === leader);
+      halos[i].classList.toggle('on', i === leader);
+      if (i !== leader) followers.push(i);
+    }
+    // highlight the four edges leaving the leader
+    edges.forEach(function (e) { e.classList.remove('hot'); });
+    followers.forEach(function (f) {
+      var a = PTS[leader], b = PTS[f];
+      edges.forEach(function (e) {
+        var x1 = +e.getAttribute('x1'), y1 = +e.getAttribute('y1');
+        var x2 = +e.getAttribute('x2'), y2 = +e.getAttribute('y2');
+        var match = (x1 === a[0] && y1 === a[1] && x2 === b[0] && y2 === b[1]) ||
+                    (x1 === b[0] && y1 === b[1] && x2 === a[0] && y2 === a[1]);
+        if (match) e.classList.add('hot');
+      });
+    });
+    elTerm.textContent = pad(term);
+    elLead.textContent = 'n' + (leader + 1);
+    return followers;
+  }
+
+  var followers = paint();
+  var start = performance.now(), lastBeat = 0;
+
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function frame(now) {
+    var t = now - start;
+    var inCycle = t % CYCLE;
+    var electing = inCycle > CYCLE - ELECTION;
+
+    svg.classList.toggle('svg-electing', electing);
+
+    if (electing) {
+      pulses.forEach(function (p) { p.setAttribute('opacity', 0); });
+      if (!svg.dataset.pending) {
+        svg.dataset.pending = '1';
+        setTimeout(function () {
+          leader = (leader + 3) % 5;   // a different peer wins the next term
+          term += 1;
+          followers = paint();
+          delete svg.dataset.pending;
+        }, ELECTION);
+      }
+    } else {
+      var beat = (inCycle % BEAT) / BEAT;
+      var ease = beat < 0.5 ? 2 * beat * beat : 1 - Math.pow(-2 * beat + 2, 2) / 2;
+      for (var i = 0; i < 4; i++) {
+        var a = PTS[leader], b = PTS[followers[i]];
+        pulses[i].setAttribute('opacity', beat > 0.94 ? 0 : 0.9);
+        pulses[i].setAttribute('cx', a[0] + (b[0] - a[0]) * ease);
+        pulses[i].setAttribute('cy', a[1] + (b[1] - a[1]) * ease);
+      }
+      var beatIndex = Math.floor(inCycle / BEAT);
+      if (beatIndex !== lastBeat) {
+        lastBeat = beatIndex;
+        commit += Math.floor(Math.random() * 3) + 1;
+        elCommit.textContent = commit;
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
