@@ -237,7 +237,7 @@ footer{
       <div class="who">
         <h1>Akshay Shivashankar Bharadwaj</h1>
         <span class="role">Distributed systems · Cloud · Full-stack · DevSecOps</span>
-        <span class="status"><span class="led"></span>Open to 2026 & 2027 roles</span>
+        <span class="status"><span class="led"></span>Open to 2026 &amp; 2027 roles</span>
       </div>
       <div class="contacts">
         <a class="chip primary" href="Akshay_Shivashankar_Bharadwaj_Resume.pdf" download>Resume ↓</a>
@@ -269,7 +269,7 @@ footer{
         <h2 class="view-title">Systems that stay up when things go wrong.</h2>
         <p class="view-sub">Los Angeles, CA · MS Computer Science, University of Southern California</p>
         <div class="prose">
-          <p>I work on distributed systems and cloud infrastructure. At Qualcomm I deployed and operated 70+ production applications on AWS and cut deployment time roughly in half by moving services onto Docker and Kubernetes. At USC I have gone the other direction — down into a Unix-like kernel in C and a Raft consensus implementation in C++20.</p>
+          <p>I work on distributed systems and cloud infrastructure. At Qualcomm I deployed and operated 70+ production applications on AWS and cut deployment time roughly in half by moving services onto Docker and Kubernetes. At USC I have gone the other direction — down into a Unix-like kernel in C, a Raft consensus implementation in C++20, and a service mesh proxy in Go that keeps traffic flowing when backends fail.</p>
           <p>What connects the two is a preference for systems whose failure behaviour is understood before it is observed: quorums, timeouts, replicated state, and the kind of automated fault injection that proves the design holds. The cluster on the right runs that same logic — take a node offline and watch it re-elect.</p>
         </div>
         <div class="stats">
@@ -326,7 +326,6 @@ footer{
   </section>
 
   <!-- 02 experience -->
-    <!-- 02 experience -->
   <section class="view" id="view-experience">
     <h2 class="view-title">Experience</h2>
     <p class="view-sub">2.5+ years across site reliability, cloud infrastructure and teaching</p>
@@ -367,7 +366,7 @@ footer{
   <!-- 03 work -->
   <section class="view" id="view-work">
     <h2 class="view-title">Selected work</h2>
-    <p class="view-sub">Six projects · select one to read the detail</p>
+    <p class="view-sub">Seven projects · select one to read the detail</p>
     <div class="work">
       <div class="plist" id="plist" role="listbox" aria-label="Projects"></div>
       <div class="detail" id="detail"></div>
@@ -406,7 +405,7 @@ footer{
     <div class="groups">
       <div class="group">
         <span class="tag">Languages</span>
-        <ul><li>Python</li><li>C / C++</li><li>Java</li><li>JavaScript</li><li>SQL</li><li>C#</li><li>TypeScript</li></ul>
+        <ul><li>Go</li><li>Python</li><li>C / C++</li><li>Java</li><li>JavaScript</li><li>SQL</li><li>C#</li><li>TypeScript</li></ul>
       </div>
       <div class="group">
         <span class="tag">Cloud &amp; infra</span>
@@ -414,7 +413,7 @@ footer{
       </div>
       <div class="group">
         <span class="tag">Systems</span>
-        <ul><li>Linux / Unix</li><li>Raft consensus</li><li>gRPC</li><li>Kernel internals</li><li>Concurrency</li></ul>
+        <ul><li>Linux / Unix</li><li>Raft consensus</li><li>Load balancing</li><li>gRPC</li><li>Kernel internals</li><li>Concurrency</li></ul>
       </div>
       <div class="group">
         <span class="tag">Web &amp; ops</span>
@@ -432,6 +431,15 @@ footer{
 <script>
 /* ══ project data ═══════════════════════════════════════════════ */
 var PROJECTS = [
+  { title:"meshd — L7 Service Mesh Data Plane", domain:"Networked systems",
+    stack:["Go","HTTP/2","Prometheus","Docker"],
+    bullets:[
+      "Reverse proxy that routes traffic across backend servers and reroutes around failing ones — 100% of 6,000 requests succeeded at p99 6.2ms while a third of capacity was hard-down.",
+      "Active health probing paired with passive outlier ejection, catching backends that pass health checks while failing real traffic; recovered servers ramp back gradually to avoid overwhelming a cold instance.",
+      "Retry budget scaled to live concurrency capped amplification at 1.23x during outages, where a fixed attempt count would have tripled load on already-failing servers.",
+      "Deterministic simulation harness runs the whole proxy against a scripted network on a fake clock, verifying failure invariants across 60 seeded scenarios that replay identically every run.",
+      "Zero external dependencies — Prometheus exposition format, consistent hash ring and fake clock all written from scratch. Race-detector clean under live config reload."
+    ]},
   { title:"Raft Consensus Protocol", domain:"Distributed systems",
     stack:["C++20","gRPC","Concurrency","Fault injection"],
     bullets:[
